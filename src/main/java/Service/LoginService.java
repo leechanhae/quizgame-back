@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 public class LoginService {
     private final UserRepository userRepository;
 
-    public UserDto login(String username, String password) {
-        User user = userRepository.findByUsernameAndPassword(username, password)
+    public UserDto login(String userId, String password) {
+        User user = userRepository.findByUserIdAndPassword(userId, password)
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
-        return new UserDto(user.getUserId(), user.getUsername());
+        return new UserDto(user.getUserId(), user.getUsername(), user.getPassword());
     }
 }
